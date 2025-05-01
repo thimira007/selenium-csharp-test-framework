@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 
-namespace TelenorAutomation.Pages
+namespace SeleniumCsharp.Pages
 {
     public class HomePage
     {

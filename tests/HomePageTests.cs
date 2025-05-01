@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
-using TelenorAutomation.Drivers;
-using TelenorAutomation.Pages;
+using SeleniumCsharp.Drivers;
+using SeleniumCsharp.Pages;
 
-namespace TelenorAutomation.Tests
+namespace SeleniumCsharp.Tests
 {
     public class HomePageTests
     {

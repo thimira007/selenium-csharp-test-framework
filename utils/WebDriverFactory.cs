@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace TelenorAutomation.Drivers
+namespace SeleniumCsharp.Drivers
 {
     public class WebDriverFactory
     {
