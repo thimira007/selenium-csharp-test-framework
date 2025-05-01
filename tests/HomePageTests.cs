@@ -14,20 +14,32 @@ namespace SeleniumCsharp.Tests
         public void SetUp()
         {
             driver = WebDriverFactory.CreateDriver();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             homePage = new HomePage(driver);
         }
 
-        [Test]
+        [Test, Category("@smoke")]
         public void ValidateHomePageTitle()
         {
-            homePage.GoToHomePage();
-            homePage.AcceptCookies();
-            Assert.IsTrue(homePage.GetTitle().Contains("Telenor"), "Homepage title should contain 'Telenor'");
+            homePage.navigateToHomePage();
+            homePage.acceptCookies();
+            Assert.IsTrue(homePage.getTitle().Contains("Telenor"), "Homepage title should contain 'Telenor'");
+            homePage.clickMenuHandla();;
+            homePage.clickSubMenuItem("Bredband");
         }
+
+        //[Test]
+        //public void ValidateHomePageTitle1()
+        //{
+        //    homePage.navigateToHomePage();
+        //    homePage.acceptCookies();
+        //    Assert.IsTrue(homePage.getTitle().Contains("Telenor"), "Homepage title should contain 'Telenor'");
+        //}
 
         [TearDown]
         public void TearDown()
         {
+            Thread.Sleep(5000);
             if (driver != null)
             {
                 driver.Quit();

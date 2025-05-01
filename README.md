@@ -7,3 +7,6 @@ Build the project -> run: `dotnet build`
 To run all tests -> run: `dotnet test`
 
 To run specific set of tests using a annotation. -> run: `dotnet test --filter Category=@smoke`
+
+To generate default trx report
+`dotnet test --logger "trx;LogFileName=test-results.trx"`
