@@ -37,6 +37,13 @@ namespace SeleniumCsharp.Utils
             element.SendKeys(text);
         }
 
+        protected void SelectDropdownByIndex(By dropdownLocator, int index)
+        {
+            var dropdownElement = driver.FindElement(dropdownLocator);
+            var select = new SelectElement(dropdownElement);
+            select.SelectByIndex(index);
+        }
+
         // Get text from element
         protected string GetText(By locator)
         {
