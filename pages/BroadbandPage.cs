@@ -7,7 +7,6 @@ namespace SeleniumCsharp.Pages
     public class BroadbandPage
     {
         private readonly IWebDriver driver;
-        //private readonly By searchBox = By.Id("onetrust-accept-btn-handler");
         private readonly By searchBox = By.XPath("//button[@id='onetrust-accept-btn-handler']");
 
 
