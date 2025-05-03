@@ -26,7 +26,6 @@ namespace SeleniumCsharp.Utils
         [TearDown]
         public void TearDown()
         {
-            Thread.Sleep(5000); // TODO: Remove
             if (driver != null)
             {
                 driver.Quit();

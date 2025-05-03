@@ -16,8 +16,6 @@ namespace SeleniumCsharp.Pages
         private readonly By productResultsList = By.XPath("//div[@data-test='product-grid']/ul");
         private readonly By productResultTitle = By.XPath("//*[@data-test='grid-item-heading']");
 
-
-
         public BroadbandPage(IWebDriver driver) : base(driver) { }
 
         public void SearchForAddress(string address)

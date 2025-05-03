@@ -6,10 +6,11 @@ using SeleniumCsharp.Pages;
 
 namespace SeleniumCsharp.Tests
 {
-    public class HomePageTests : BaseTest
+    public class BroadbandTest : BaseTest
     {
         private HomePage homePage;
         private BroadbandPage broadbandPage;
+        private const string addressSearchString = "Storgatan 1, Uppsala";
 
         [SetUp]
         public void init()
@@ -20,14 +21,13 @@ namespace SeleniumCsharp.Tests
 
 
         [Test, Category("@smoke")]
-        public void ValidateHomePageTitle()
+        public void VerifyBredbandOptionAvailability()
         {
             homePage.NavigateToHomePage();
             homePage.AcceptCookies();
-            Assert.IsTrue(homePage.GetPageTitle().Contains("Telenor"), "Homepage title should contain 'Telenor'");
             homePage.ClickMenuHandla(); ;
             homePage.ClickSubMenuItem(Constants.MenuItemBredband);
-            broadbandPage.SearchForAddress("Storgatan 1, Uppsala");
+            broadbandPage.SearchForAddress(addressSearchString);
             broadbandPage.SelectRandomApartment();
 
             IList<IWebElement> resultList = broadbandPage.GetProductResultsList();
@@ -39,14 +39,24 @@ namespace SeleniumCsharp.Tests
             Assert.IsTrue(isAvailable, $"Text '{searchText}' was not found in any of the list items.");
         }
 
+        // This is written expected to fail
         [Test]
-        public void ValidateHomePageTitle1()
+        public void VerifyOtherOptionAvailability()
         {
             homePage.NavigateToHomePage();
             homePage.AcceptCookies();
-            Assert.IsTrue(homePage.GetPageTitle().Contains("Telenor"), "Homepage title should contain 'Telenor'");
             homePage.ClickMenuHandla(); ;
             homePage.ClickSubMenuItem(Constants.MenuItemBredband);
+            broadbandPage.SearchForAddress(addressSearchString);
+            broadbandPage.SelectRandomApartment();
+
+            IList<IWebElement> resultList = broadbandPage.GetProductResultsList();
+            Assert.Greater(resultList.Count, 0, $"At least one result should be available. Found {resultList.Count} instead.");
+
+            // Check invalid value. it should fail the test
+            string searchText = "Other via 5G";
+            bool isAvailable = broadbandPage.IsTextPresentInResultList(searchText);
+            Assert.IsTrue(isAvailable, $"Text '{searchText}' was not found in any of the list items.");
         }
     }
 }
